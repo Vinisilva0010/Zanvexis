@@ -1,0 +1,7 @@
+{
+  "/token/page": "app/token/page.js",
+  "/page": "app/page.js",
+  "/planos/page": "app/planos/page.js",
+  "/automacoes/page": "app/automacoes/page.js",
+  "/personalizadas/page": "app/personalizadas/page.js"
+}

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Cyber Styles */
+@layer base {
+  html {
+    font-family: 'Rajdhani', sans-serif;
+  }
+  
+  body {
+    @apply bg-dark-bg text-white;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* Cyber Button */
+  .cyber-button {
+    @apply relative px-8 py-3 bg-transparent border-2 border-cyber-blue text-cyber-blue font-tech font-semibold tracking-wider uppercase transition-all duration-300 hover:bg-cyber-blue hover:text-dark-bg hover:shadow-lg hover:shadow-cyber-blue/50;
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%, 15px 50%);
+  }
+  
+  .cyber-button-glow {
+    @apply cyber-button;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  /* Cyber Card */
+  .cyber-card {
+    @apply bg-dark-surface/80 backdrop-blur-sm border border-cyber-blue/30 rounded-lg p-6 transition-all duration-300 hover:border-cyber-blue/60 hover:shadow-lg hover:shadow-cyber-blue/20;
+  }
+  
+  /* Cyber Input */
+  .cyber-input {
+    @apply bg-dark-surface/50 border border-cyber-blue/30 rounded-md px-4 py-3 text-white placeholder-gray-400 focus:border-cyber-blue focus:outline-none focus:ring-1 focus:ring-cyber-blue transition-all duration-300;
+  }
+  
+  /* Cyber Text */
+  .cyber-text {
+    @apply font-cyber text-cyber-blue;
+  }
+  
+  .tech-text {
+    @apply font-tech tracking-wide;
+  }
+  
+  /* Glitch Effect */
+  .glitch {
+    position: relative;
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: glitch 1s linear infinite;
+  }
+  
+  .glitch:before,
+  .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch:before {
+    animation: glitch-1 0.5s linear infinite;
+    color: #ff0080;
+    z-index: -1;
+  }
+  
+  .glitch:after {
+    animation: glitch-2 0.5s linear infinite;
+    color: #00f5ff;
+    z-index: -2;
+  }
+  
+  /* Neon Glow */
+  .neon-glow {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor;
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00f5ff, #8b5cf6);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #8b5cf6, #00f5ff);
+  }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+}
