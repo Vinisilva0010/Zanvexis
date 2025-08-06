@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { 
   ArrowRight, 
   Zap, 
@@ -301,13 +302,15 @@ export default function Home() {
                 </div>
                 
                 <p className="text-gray-300 text-lg leading-relaxed italic">
-                  "{testimonial.content}"
+                  &ldquo;{testimonial.content}&rdquo;
                 </p>
                 
                 <div className="flex items-center space-x-4">
-                  <img
+                  <Image
                     src={testimonial.avatar}
                     alt={testimonial.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-cyber-blue/50"
                   />
                   <div>
