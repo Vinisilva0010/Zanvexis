@@ -21,7 +21,8 @@ import {
   ShoppingCart,
   Calendar,
   FileText,
-  MessageSquare
+  MessageSquare,
+  User
 } from 'lucide-react'
 import { useUser } from '@clerk/nextjs'
 
@@ -35,7 +36,7 @@ export default function AutomacoesPage() {
   const categories = [
     { id: 'todas', label: 'Todas', count: 47 },
     { id: 'marketing', label: 'Marketing', count: 12 },
-    { id: 'vendas', label: 'Vendas', count: 8 },
+    { id: 'Analise', label: 'Analise', count: 8 },
     { id: 'financeiro', label: 'Financeiro', count: 6 },
     { id: 'rh', label: 'Recursos Humanos', count: 5 },
     { id: 'operacoes', label: 'Operações', count: 9 },
@@ -46,9 +47,9 @@ export default function AutomacoesPage() {
   const automations = [
     {
       id: 1,
-      name: "Lead Scoring Inteligente",
-      description: "IA avançada que qualifica leads automaticamente baseado em comportamento e dados demográficos.",
-      category: "marketing",
+      name: "Analytics Pro",
+      description: "Transforme suas planilhas Excel em análises poderosas com visualizações modernas e insights automáticos.",
+      category: "Analise",
       icon: Users,
       rating: 4.9,
       users: "2.3k",
@@ -56,7 +57,8 @@ export default function AutomacoesPage() {
       difficulty: "Fácil",
       tags: ["IA", "CRM", "Analytics"],
       price: "Premium",
-      videoUrl: "https://example.com/video1.mp4",
+      videoUrl: "/videos/ANALITYPRO.mp4",
+      automationUrl: "https://excel-one-eta.vercel.app/",
       thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
       features: [
         "Integração com 50+ CRMs",
@@ -65,27 +67,30 @@ export default function AutomacoesPage() {
         "API personalizada"
       ]
     },
-    {
-      id: 2,
-      name: "E-commerce Analytics Pro",
-      description: "Dashboard completo com métricas avançadas, previsões de vendas e insights automatizados.",
-      category: "vendas",
-      icon: ShoppingCart,
-      rating: 4.8,
-      users: "1.8k",
-      duration: "3 min",
-      difficulty: "Médio",
-      tags: ["E-commerce", "Analytics", "BI"],
-      price: "Grátis",
-      videoUrl: "https://example.com/video2.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      features: [
-        "Dashboards interativos",
-        "Previsões de demanda",
-        "Alertas inteligentes",
-        "Integração Shopify/WooCommerce"
-      ]
-    },
+  {
+  id: 2,
+  name: "Sistema Inteligente de Controle de Estoque",
+  description: "Controle total e profissional do seu estoque. Organize produtos, evite perdas, acompanhe cada movimentação em tempo real e tome decisões com base em dados. Tudo isso com uma interface intuitiva e visual.",
+  category: "Gestão Empresarial",
+  icon: ShoppingCart, // ou Boxes, Package, Archive...
+  rating: 4.9,
+  users: "2.3k",
+  duration: "5 min",
+  difficulty: "Fácil",
+  tags: ["Estoque", "Empresas", "Gestão", "Logística"],
+  price: "Grátis",
+  videoUrl: "https://example.com/video2.mp4", // pode colocar o link real se quiser
+  automationUrl: "https://sistema-inteligente-blush.vercel.app/",
+  thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+  features: [
+    "Controle preciso de entradas e saídas de produtos",
+    "Estoque atualizado em tempo real",
+    "Relatórios automáticos e prontos para impressão",
+    "Design simples e fácil de usar, mesmo sem experiência",
+    "Ideal para pequenas e médias empresas"
+  ]
+},
+
     {
       id: 3,
       name: "Fluxo de Aprovação Financeira",
@@ -186,8 +191,11 @@ export default function AutomacoesPage() {
       alert('Faça login para executar automações premium!')
       return
     }
-    // Logic to execute automation
-    console.log('Executando automação:', automation.name)
+    if (automation.automationUrl) {
+      window.open(automation.automationUrl, '_blank')
+    } else {
+      alert('Link da automação não configurado. Entre em contato com o suporte.')
+    }
   }
 
   const getPriceColor = (price: string) => {
@@ -468,18 +476,14 @@ export default function AutomacoesPage() {
                 </button>
               </div>
               
-              {/* Video Player Placeholder */}
-              <div className="aspect-video bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 rounded-lg flex items-center justify-center mb-6">
-                <div className="text-center space-y-4">
-                  <Play className="h-16 w-16 text-cyber-blue mx-auto" />
-                  <p className="text-gray-400">
-                    Player de vídeo será integrado aqui
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    URL: {selectedAutomation.videoUrl}
-                  </p>
+              {/* Video Player com design futurista */}
+                <div className="aspect-video bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 rounded-lg flex items-center justify-center mb-6 overflow-hidden">
+                  <video
+                    className="w-full h-full object-cover"
+                    controls
+                    src={selectedAutomation.videoUrl}
+                  />
                 </div>
-              </div>
 
               {/* Features List */}
               <div className="space-y-3">
