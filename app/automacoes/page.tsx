@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Play, 
   Eye, 
@@ -288,9 +289,11 @@ export default function AutomacoesPage() {
                 >
                   {/* Thumbnail */}
                   <div className="relative mb-6 overflow-hidden rounded-lg">
-                    <img
+                    <Image
                       src={automation.thumbnail}
                       alt={automation.name}
+                      width={400}
+                      height={192}
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-bg/80 to-transparent" />

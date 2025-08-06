@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Check, 
   Zap, 
@@ -431,9 +432,11 @@ export default function PlanosPage() {
             {testimonials.map((testimonial, index) => (
               <div key={index} className="cyber-card">
                 <div className="flex items-start space-x-4">
-                  <img
+                  <Image
                     src={testimonial.avatar}
                     alt={testimonial.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full border-2 border-cyber-blue/50"
                   />
                   <div className="flex-1">
@@ -449,7 +452,7 @@ export default function PlanosPage() {
                       {testimonial.role}
                     </div>
                     <p className="text-gray-300 italic">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </p>
                   </div>
                 </div>

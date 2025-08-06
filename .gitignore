@@ -1,0 +1,38 @@
+# Ignorar dependências
+node_modules/
+.next/
+out/
+
+# Ignorar variáveis de ambiente
+.env
+.env.local
+.env.development
+.env.production
+
+# Ignorar logs e relatórios
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Ignorar sistema operacional e editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Ignorar arquivos temporários
+*.swp
+*.tmp
+*.bak
+*.old
+
+# Build de produção local
+dist/
+
+# Arquivos do vercel (caso não queira subir localmente)
+.vercel/
+
+# Arquivos de lock (caso prefira não subir, opcional)
+# package-lock.json
+# yarn.lock
