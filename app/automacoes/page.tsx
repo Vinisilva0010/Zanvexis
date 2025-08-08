@@ -1,202 +1,74 @@
+
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { 
-  Play, 
-  Eye, 
-  Star, 
-  Filter, 
-  Search, 
-  Zap,
-  Users,
-  Clock,
-  ArrowRight,
-  CheckCircle,
-  Sparkles,
-  BarChart3,
-  Mail,
-  Database,
-  ShoppingCart,
-  Calendar,
-  FileText,
-  MessageSquare,
-  User
-} from 'lucide-react'
+import { Play, Eye, Star, Search, Zap, Users, Clock, CheckCircle } from 'lucide-react'
 import { useUser } from '@clerk/nextjs'
+import type { Automation } from '@/app/automacoes/data'
+import { automations as automationsData, slugify } from '@/app/automacoes/data'
 
 export default function AutomacoesPage() {
   const [selectedCategory, setSelectedCategory] = useState('todas')
   const [searchTerm, setSearchTerm] = useState('')
   const [showVideoModal, setShowVideoModal] = useState(false)
-  const [selectedAutomation, setSelectedAutomation] = useState<any>(null)
+  const [selectedAutomation, setSelectedAutomation] = useState<Automation | null>(null)
   const { isSignedIn } = useUser()
 
-  const categories = [
-    { id: 'todas', label: 'Todas', count: 47 },
-    { id: 'marketing', label: 'Marketing', count: 12 },
-    { id: 'Analise', label: 'Analise', count: 8 },
-    { id: 'financeiro', label: 'Financeiro', count: 6 },
-    { id: 'rh', label: 'Recursos Humanos', count: 5 },
-    { id: 'operacoes', label: 'Operações', count: 9 },
-    { id: 'atendimento', label: 'Atendimento', count: 7 }
-  ]
+  const automations: Automation[] = automationsData
 
-  // Mock automations data - Ready to be replaced with real data
-  const automations = [
-    {
-      id: 1,
-      name: "Analytics Pro",
-      description: "Transforme suas planilhas Excel em análises poderosas com visualizações modernas e insights automáticos.",
-      category: "Analise",
-      icon: Users,
-      rating: 4.9,
-      users: "2.3k",
-      duration: "5 min",
-      difficulty: "Fácil",
-      tags: ["IA", "CRM", "Analytics"],
-      price: "Premium",
-      videoUrl: "/videos/ANALITYPRO.mp4",
-      automationUrl: "https://excel-one-eta.vercel.app/",
-      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      features: [
-        "Integração com 50+ CRMs",
-        "Scoring baseado em IA",
-        "Relatórios em tempo real",
-        "API personalizada"
-      ]
-    },
-  {
-  id: 2,
-  name: "Sistema Inteligente de Controle de Estoque",
-  description: "Controle total e profissional do seu estoque. Organize produtos, evite perdas, acompanhe cada movimentação em tempo real e tome decisões com base em dados. Tudo isso com uma interface intuitiva e visual.",
-  category: "Gestão Empresarial",
-  icon: ShoppingCart, // ou Boxes, Package, Archive...
-  rating: 4.9,
-  users: "2.3k",
-  duration: "5 min",
-  difficulty: "Fácil",
-  tags: ["Estoque", "Empresas", "Gestão", "Logística"],
-  price: "Grátis",
-  videoUrl: "https://example.com/video2.mp4", // pode colocar o link real se quiser
-  automationUrl: "https://sistema-inteligente-blush.vercel.app/",
-  thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-  features: [
-    "Controle preciso de entradas e saídas de produtos",
-    "Estoque atualizado em tempo real",
-    "Relatórios automáticos e prontos para impressão",
-    "Design simples e fácil de usar, mesmo sem experiência",
-    "Ideal para pequenas e médias empresas"
-  ]
-},
+  const categories = (() => {
+    const map = new Map<string, { id: string; label: string; count: number }>()
+    automations.forEach(a => {
+      const existing = map.get(a.categoryId)
+      if (existing) {
+        existing.count += 1
+      } else {
+        map.set(a.categoryId, { id: a.categoryId, label: a.category, count: 1 })
+      }
+    })
+    return [
+      { id: 'todas', label: 'Todas', count: automations.length },
+      ...Array.from(map.values()).sort((a, b) => a.label.localeCompare(b.label))
+    ]
+  })()
 
-    {
-      id: 3,
-      name: "Fluxo de Aprovação Financeira",
-      description: "Automatize aprovações de despesas, controle orçamentário e geração de relatórios fiscais.",
-      category: "financeiro",
-      icon: BarChart3,
-      rating: 4.7,
-      users: "987",
-      duration: "8 min",
-      difficulty: "Avançado",
-      tags: ["Financeiro", "Compliance", "ERP"],
-      price: "Enterprise",
-      videoUrl: "https://example.com/video3.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=250&fit=crop",
-      features: [
-        "Fluxos personalizáveis",
-        "Compliance automático",
-        "Integração ERP",
-        "Auditoria completa"
-      ]
-    },
-    {
-      id: 4,
-      name: "Email Marketing Hyper-Personalizado",
-      description: "Campanhas de email com personalização extrema usando IA para maximizar conversões.",
-      category: "marketing",
-      icon: Mail,
-      rating: 4.9,
-      users: "3.1k",
-      duration: "4 min",
-      difficulty: "Fácil",
-      tags: ["Email", "IA", "Personalização"],
-      price: "Premium",
-      videoUrl: "https://example.com/video4.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=250&fit=crop",
-      features: [
-        "Personalização por IA",
-        "A/B testing automático",
-        "Segmentação avançada",
-        "Analytics preditivos"
-      ]
-    },
-    {
-      id: 5,
-      name: "Backup Inteligente Multi-Cloud",
-      description: "Sistema de backup automático com redundância em múltiplas clouds e recuperação instantânea.",
-      category: "operacoes",
-      icon: Database,
-      rating: 4.8,
-      users: "1.5k",
-      duration: "6 min",
-      difficulty: "Médio",
-      tags: ["Cloud", "Backup", "Segurança"],
-      price: "Premium",
-      videoUrl: "https://example.com/video5.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop",
-      features: [
-        "Multi-cloud sync",
-        "Criptografia end-to-end",
-        "Recuperação em 1-click",
-        "Monitoramento 24/7"
-      ]
-    },
-    {
-      id: 6,
-      name: "Chatbot de Atendimento Premium",
-      description: "IA conversacional avançada que resolve 90% dos tickets automaticamente com satisfação alta.",
-      category: "atendimento",
-      icon: MessageSquare,
-      rating: 4.6,
-      users: "2.7k",
-      duration: "7 min",
-      difficulty: "Médio",
-      tags: ["IA", "Chatbot", "Support"],
-      price: "Grátis",
-      videoUrl: "https://example.com/video6.mp4",
-      thumbnail: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
-      features: [
-        "NLP avançado",
-        "Integração omnichannel",
-        "Analytics de sentimento",
-        "Escalação inteligente"
-      ]
-    }
-  ]
-
+  const normalizedSearch = searchTerm.trim().toLowerCase()
   const filteredAutomations = automations.filter(automation => {
-    const matchesCategory = selectedCategory === 'todas' || automation.category === selectedCategory
-    const matchesSearch = automation.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         automation.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         automation.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+    const matchesCategory = selectedCategory === 'todas' || automation.categoryId === selectedCategory
+    if (!normalizedSearch) return matchesCategory
+    const matchesSearch =
+      automation.name.toLowerCase().includes(normalizedSearch) ||
+      automation.description.toLowerCase().includes(normalizedSearch) ||
+      automation.tags.some(tag => tag.toLowerCase().includes(normalizedSearch)) ||
+      automation.category.toLowerCase().includes(normalizedSearch)
     return matchesCategory && matchesSearch
   })
 
-  const handleExecuteAutomation = (automation: any) => {
-    if (!isSignedIn) {
-      // Show alert for non-logged users
+
+  const router = useRouter();
+
+  const handleExecuteAutomation = (automation: Automation) => {
+    const requiresAuth = automation.price === 'Premium' || automation.price === 'Enterprise'
+    if (requiresAuth && !isSignedIn) {
       alert('Faça login para executar automações premium!')
       return
     }
-    if (automation.automationUrl) {
-      window.open(automation.automationUrl, '_blank')
+    const url = automation.automationUrl
+    if (url) {
+      const isExternal = /^https?:\/\//i.test(url)
+      if (isExternal) {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      } else {
+        router.push(url)
+      }
     } else {
       alert('Link da automação não configurado. Entre em contato com o suporte.')
     }
   }
+
 
   const getPriceColor = (price: string) => {
     switch (price) {
@@ -283,7 +155,7 @@ export default function AutomacoesPage() {
           transition={{ delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filteredAutomations.map((automation, index) => {
               const Icon = automation.icon
               return (
