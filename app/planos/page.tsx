@@ -358,8 +358,8 @@ export default function PlanosPage() {
               </thead>
               <tbody>
                 {comparisonFeatures.map((category, categoryIndex) => (
-                  <>
-                    <tr key={`category-${categoryIndex}`}>
+                  <tbody key={`group-${categoryIndex}`}>
+                    <tr>
                       <td 
                         colSpan={4} 
                         className="py-4 px-6 font-tech font-bold text-cyber-purple bg-cyber-purple/10"
@@ -410,7 +410,7 @@ export default function PlanosPage() {
                         </td>
                       </tr>
                     ))}
-                  </>
+                  </tbody>
                 ))}
               </tbody>
             </table>

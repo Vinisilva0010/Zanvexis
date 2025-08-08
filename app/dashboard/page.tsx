@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { 
   Activity, 
   BarChart3, 
@@ -20,6 +21,7 @@ import {
 } from 'lucide-react'
 
 export default function DashboardPage() {
+  const router = useRouter()
   // Mock data for the dashboard
   const stats = [
     {
@@ -286,6 +288,7 @@ export default function DashboardPage() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 + index * 0.1 }}
+                      onClick={() => router.push(action.href)}
                       className={`w-full p-4 bg-gradient-to-r ${action.color} bg-opacity-20 border border-cyber-blue/30 rounded-lg hover:border-cyber-blue/60 transition-all duration-300 group text-left`}
                     >
                       <div className="flex items-start space-x-3">
