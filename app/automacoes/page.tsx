@@ -273,7 +273,8 @@ export default function AutomacoesPage() {
                   </div>
                 </motion.div>
               )
-            })}
+            }
+            )}
           </AnimatePresence>
         </motion.div>
 
