@@ -53,7 +53,7 @@ const automationsRaw = [
     price: "Grátis" as const,
     videoUrl: "/videos/ANALITYPRO.mp4",
     automationUrl: "/automacoes/analytics-pro",
-    thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
+    thumbnail: "/image/image105.png",
     features: [
       "Upload de Excel/CSV automático",
       "Análise de dados com IA",
@@ -77,7 +77,7 @@ const automationsRaw = [
     price: "Grátis" as const,
     videoUrl: "https://example.com/video2.mp4",
     automationUrl: "/automacoes/sistema-estoque",
-    thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+    thumbnail: "/image/image1.png",
     features: [
       "Controle de produtos em tempo real",
       "Alertas automáticos de estoque baixo",
@@ -89,24 +89,26 @@ const automationsRaw = [
   },
   {
     id: 3,
-    name: "Email Marketing Hyper-Personalizado",
-    description: "Transforme seus envios de email em máquinas de conversão com campanhas hiper-personalizadas alimentadas por IA.",
+    name: "Gerador de Landing Pages",
+    description: "Crie landing pages profissionais em minutos. Escolha temas, personalize conteúdo e gere páginas otimizadas para conversão automaticamente.",
     category: "marketing",
     icon: Mail,
-    rating: 4.9,
-    users: "3.1k",
-    duration: "4 min",
+    rating: 4.8,
+    users: "1.8k",
+    duration: "3 min",
     difficulty: "Fácil" as const,
-    tags: ["Email", "IA", "Personalização"],
-    price: "Premium" as const,
-    videoUrl: "https://example.com/video4.mp4",
-    automationUrl: "https://funil-track.vercel.app/",
-    thumbnail: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=250&fit=crop",
+    tags: ["Landing Page", "Design", "Conversão", "Marketing"],
+    price: "Grátis" as const,
+    videoUrl: "https://example.com/video3.mp4",
+    automationUrl: "/automacoes/gerador-landing",
+    thumbnail: "/image/image101.png",
     features: [
-      "Personalização automática por IA para cada cliente",
-      "A/B Testing em tempo real com ajustes inteligentes",
-      "Segmentação avançada por comportamento e perfil",
-      "Relatórios com analytics preditivos para decisões mais rápidas"
+      "6 temas profissionais inclusos",
+      "Design responsivo automático",
+      "Otimização para SEO integrada",
+      "Preview em tempo real",
+      "Download de código HTML",
+      "Copiar código com um clique"
     ]
   },
   {
@@ -172,7 +174,31 @@ const automationsRaw = [
       "Analytics de sentimento",
       "Escalação inteligente"
     ]
+  },
+
+   {
+    id: 6,
+    name: "Chatbot de Atendimento Premium",
+    description: "IA conversacional avançada que resolve 90% dos tickets automaticamente com satisfação alta.",
+    category: "atendimento",
+    icon: MessageSquare,
+    rating: 4.6,
+    users: "2.7k",
+    duration: "7 min",
+    difficulty: "Médio" as const,
+    tags: ["IA", "Chatbot", "Support"],
+    price: "Grátis" as const,
+    videoUrl: "https://example.com/video6.mp4",
+    thumbnail: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
+    features: [
+      "NLP avançado",
+      "Integração omnichannel",
+      "Analytics de sentimento",
+      "Escalação inteligente"
+    ]
   }
+
+  
 ] as const
 
 export const automations: Automation[] = (automationsRaw as unknown as Omit<Automation, 'categoryId'>[]).map(a => ({
