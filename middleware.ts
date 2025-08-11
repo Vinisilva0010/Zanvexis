@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 // Rotas públicas (não exigem autenticação)
 const isPublicRoute = createRouteMatcher([
@@ -8,6 +9,8 @@ const isPublicRoute = createRouteMatcher([
   "/token(.*)",
   "/login(.*)",
   "/signup(.*)",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
   "/contato(.*)",
 ]);
 
@@ -24,7 +27,10 @@ export default clerkMiddleware((auth, req) => {
   if (isProtectedRoute(req)) {
     const { userId } = auth();
     if (!userId) {
-      return auth().redirectToSignIn({ returnBackUrl: req.url });
+      // Redireciona para a página de login com URL de retorno
+      const signInUrl = new URL('/sign-in', req.url);
+      signInUrl.searchParams.set('redirect_url', req.nextUrl.pathname + req.nextUrl.search);
+      return NextResponse.redirect(signInUrl);
     }
   }
 });

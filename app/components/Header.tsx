@@ -29,13 +29,14 @@ const Header = () => {
     { href: '/personalizadas', label: 'Personalizadas' },
     { href: '/token', label: 'ZVX Token' },
     { href: '/contato', label: 'Contato' },
+    { href: '/contato', label: 'Loja' },
   ]
 
   const authItems = isSignedIn 
     ? [{ href: '/dashboard', label: 'Dashboard' }]
     : [
-        { href: '/login', label: 'Login' },
-        { href: '/signup', label: 'Cadastro' },
+        { href: '/sign-in', label: 'Login' },
+        { href: '/sign-up', label: 'Cadastro' },
       ]
 
   return (

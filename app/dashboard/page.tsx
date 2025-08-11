@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
+import { useUser } from '@clerk/nextjs'
+import { useEffect } from 'react'
 import { 
   Activity, 
   BarChart3, 
@@ -17,11 +19,44 @@ import {
   ArrowUpRight,
   CheckCircle,
   AlertTriangle,
-  Download
+  Download,
+  Loader
 } from 'lucide-react'
 
 export default function DashboardPage() {
   const router = useRouter()
+  const { isLoaded, isSignedIn, user } = useUser()
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in')
+    }
+  }, [isLoaded, isSignedIn, router])
+
+  // Loading state
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen pt-20 bg-dark-bg flex items-center justify-center">
+        <div className="text-center">
+          <Loader className="h-12 w-12 text-cyber-blue animate-spin mx-auto mb-4" />
+          <p className="text-gray-400 font-tech">Carregando dashboard...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Not signed in - will redirect
+  if (!isSignedIn) {
+    return (
+      <div className="min-h-screen pt-20 bg-dark-bg flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-400 font-tech">Redirecionando para login...</p>
+        </div>
+      </div>
+    )
+  }
+
   // Mock data for the dashboard
   const stats = [
     {
@@ -147,7 +182,7 @@ export default function DashboardPage() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div>
               <h1 className="text-3xl lg:text-4xl font-cyber font-bold text-white">
-                Dashboard
+                Olá, {user?.firstName || user?.emailAddresses[0]?.emailAddress || 'Usuário'}! 👋
               </h1>
               <p className="text-gray-400 font-tech mt-2">
                 Gerencie suas automações e monitore a performance

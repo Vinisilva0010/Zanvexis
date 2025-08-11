@@ -15,7 +15,7 @@ import {
   Fingerprint
 } from 'lucide-react'
 
-export default function LoginPage() {
+export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
@@ -133,3 +133,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

@@ -210,7 +210,7 @@ export default function SignUpPage() {
                       },
                     }}
                     fallbackRedirectUrl="/dashboard"
-                forceRedirectUrl="/dashboard"
+                    forceRedirectUrl="/dashboard"
                   />
                 </div>
 
