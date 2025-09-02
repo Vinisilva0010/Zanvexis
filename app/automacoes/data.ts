@@ -148,7 +148,7 @@ const automationsRaw = [
     tags: ["Certificados", "Educação", "Templates", "Personalização"],
     price: "Grátis" as const,
     videoUrl: "https://example.com/video5.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=250&fit=crop",
+    thumbnail:"/image/image33.png",
     automationUrl: "/automacoes/gerador-certificados",
     features: [
       "6 templates profissionais inclusos",
@@ -159,27 +159,7 @@ const automationsRaw = [
       "Código HTML limpo e editável"
     ]
   },
-  {
-    id: 6,
-    name: "Chatbot de Atendimento Premium",
-    description: "IA conversacional avançada que resolve 90% dos tickets automaticamente com satisfação alta.",
-    category: "atendimento",
-    icon: MessageSquare,
-    rating: 4.6,
-    users: "2.7k",
-    duration: "7 min",
-    difficulty: "Médio" as const,
-    tags: ["IA", "Chatbot", "Support"],
-    price: "Grátis" as const,
-    videoUrl: "https://example.com/video6.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
-    features: [
-      "NLP avançado",
-      "Integração omnichannel",
-      "Analytics de sentimento",
-      "Escalação inteligente"
-    ]
-    },
+  
   {
     id: 7,
     name: "Gerador de Contratos Inteligente",
@@ -193,7 +173,7 @@ const automationsRaw = [
     tags: ["Contratos", "Jurídico", "Freelancer", "Empresas"],
     price: "Grátis" as const,
     videoUrl: "https://example.com/video6.mp4",
-    thumbnail: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop",
+    thumbnail:"/image/image2.png",
     automationUrl: "/automacoes/gerador-contratos",
     features: [
       "6 tipos de contrato especializados",
@@ -203,15 +183,38 @@ const automationsRaw = [
       "Termos e condições customizáveis",
       "Preview em tempo real"
     ]
+    },
+  {
+    id: 8,
+    name: "Chatbot de Atendimento IA",
+    description: "Crie um chatbot inteligente para seu site ou WhatsApp. Respostas automáticas, FAQ personalizada e integração fácil com interface moderna.",
+    category: "atendimento",
+    icon: MessageSquare,
+    rating: 4.7,
+    users: "2.8k",
+    duration: "5 min",
+    difficulty: "Fácil" as const,
+    tags: ["Chatbot", "IA", "Atendimento", "WhatsApp"],
+    price: "Grátis" as const,
+    videoUrl: "https://example.com/video7.mp4",
+    thumbnail:"/image/image6.png",
+    automationUrl: "/automacoes/chatbot-ia",
+    features: [
+      "Interface de chat moderna e responsiva",
+      "FAQ personalizada com respostas automáticas",
+      "Simulação de IA com respostas inteligentes",
+      "Código pronto para integração",
+      "Design customizável (cores e avatar)",
+      "Export para HTML/JavaScript"
+    ]
   }
   
-      
+    
 ] as const
 
 export const automations: Automation[] = (automationsRaw as unknown as Omit<Automation, 'categoryId'>[]).map(a => ({
   ...a,
   categoryId: slugify(a.category),
 }))
-
 
 

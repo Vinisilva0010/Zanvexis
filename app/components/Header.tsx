@@ -25,11 +25,12 @@ const Header = () => {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/automacoes', label: 'Automações' },
+    { href: '/automacoes-pro', label: 'Automações Premiu' },
     { href: '/planos', label: 'Planos' },
     { href: '/personalizadas', label: 'Personalizadas' },
     { href: '/token', label: 'ZVX Token' },
     { href: '/contato', label: 'Contato' },
-    { href: '/contato', label: 'Loja' },
+    { href: 'https://loja-zanvexis.vercel.app/', label: 'Loja' },
   ]
 
   const authItems = isSignedIn 

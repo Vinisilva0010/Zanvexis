@@ -32,7 +32,7 @@ export default function PlanosPage() {
       borderColor: "border-cyber-green/30",
       popular: false,
       prices: {
-        monthly: 29,
+        monthly: 30,
         yearly: 290
       },
       features: [
