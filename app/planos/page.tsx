@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import CheckoutButton from '@/app/components/CheckoutButton'
 import { 
   Check, 
   Zap, 
@@ -302,19 +303,36 @@ export default function PlanosPage() {
                 </div>
 
                 {/* CTA Button */}
-                <button
-                  onClick={() => handlePayment(plan.name, price)}
-                  className={`w-full py-4 px-6 rounded-lg font-tech font-bold transition-all duration-300 ${
-                    plan.popular
-                      ? 'cyber-button-glow'
-                      : 'cyber-button'
-                  }`}
-                >
-                  <span className="flex items-center justify-center space-x-2">
-                    <span>Começar Agora</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </span>
-                </button>
+                {plan.name === 'Starter' ? (
+                  <button
+                    onClick={() => handlePayment(plan.name, price)}
+                    className={`w-full py-4 px-6 rounded-lg font-tech font-bold transition-all duration-300 ${
+                      plan.popular
+                        ? 'cyber-button-glow'
+                        : 'cyber-button'
+                    }`}
+                  >
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>Começar Agora</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </span>
+                  </button>
+                ) : (
+                  <CheckoutButton
+                    priceId={plan.name === 'Professional' ? 'price_1S3JlJRvEr5tJJH26wmX0nuy' : 'price_1S3JlJRvEr5tJJH26wmX0nuy'}
+                    planName={plan.name}
+                    className={`w-full py-4 px-6 rounded-lg font-tech font-bold transition-all duration-300 ${
+                      plan.popular
+                        ? 'cyber-button-glow'
+                        : 'cyber-button'
+                    }`}
+                  >
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>Assinar {plan.name}</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </span>
+                  </CheckoutButton>
+                )}
 
                 {/* Guarantee */}
                 <div className="text-center mt-4">
@@ -357,61 +375,59 @@ export default function PlanosPage() {
                 </tr>
               </thead>
               <tbody>
-                {comparisonFeatures.map((category, categoryIndex) => (
-                  <tbody key={`group-${categoryIndex}`}>
-                    <tr>
-                      <td 
-                        colSpan={4} 
-                        className="py-4 px-6 font-tech font-bold text-cyber-purple bg-cyber-purple/10"
-                      >
-                        {category.category}
+                {comparisonFeatures.map((category, categoryIndex) => [
+                  <tr key={`category-${categoryIndex}`}>
+                    <td 
+                      colSpan={4} 
+                      className="py-4 px-6 font-tech font-bold text-cyber-purple bg-cyber-purple/10"
+                    >
+                      {category.category}
+                    </td>
+                  </tr>,
+                  ...category.features.map((feature, featureIndex) => (
+                    <tr 
+                      key={`feature-${categoryIndex}-${featureIndex}`}
+                      className="border-b border-cyber-blue/10 hover:bg-cyber-blue/5"
+                    >
+                      <td className="py-3 px-6 font-tech text-gray-300">
+                        {feature.name}
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        {typeof feature.starter === 'boolean' ? (
+                          feature.starter ? (
+                            <Check className="h-5 w-5 text-cyber-green mx-auto" />
+                          ) : (
+                            <span className="text-gray-500">—</span>
+                          )
+                        ) : (
+                          <span className="font-tech text-gray-300">{feature.starter}</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        {typeof feature.professional === 'boolean' ? (
+                          feature.professional ? (
+                            <Check className="h-5 w-5 text-cyber-green mx-auto" />
+                          ) : (
+                            <span className="text-gray-500">—</span>
+                          )
+                        ) : (
+                          <span className="font-tech text-cyber-blue">{feature.professional}</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-6 text-center">
+                        {typeof feature.enterprise === 'boolean' ? (
+                          feature.enterprise ? (
+                            <Check className="h-5 w-5 text-cyber-green mx-auto" />
+                          ) : (
+                            <span className="text-gray-500">—</span>
+                          )
+                        ) : (
+                          <span className="font-tech text-gray-300">{feature.enterprise}</span>
+                        )}
                       </td>
                     </tr>
-                    {category.features.map((feature, featureIndex) => (
-                      <tr 
-                        key={`feature-${categoryIndex}-${featureIndex}`}
-                        className="border-b border-cyber-blue/10 hover:bg-cyber-blue/5"
-                      >
-                        <td className="py-3 px-6 font-tech text-gray-300">
-                          {feature.name}
-                        </td>
-                        <td className="py-3 px-6 text-center">
-                          {typeof feature.starter === 'boolean' ? (
-                            feature.starter ? (
-                              <Check className="h-5 w-5 text-cyber-green mx-auto" />
-                            ) : (
-                              <span className="text-gray-500">—</span>
-                            )
-                          ) : (
-                            <span className="font-tech text-gray-300">{feature.starter}</span>
-                          )}
-                        </td>
-                        <td className="py-3 px-6 text-center">
-                          {typeof feature.professional === 'boolean' ? (
-                            feature.professional ? (
-                              <Check className="h-5 w-5 text-cyber-green mx-auto" />
-                            ) : (
-                              <span className="text-gray-500">—</span>
-                            )
-                          ) : (
-                            <span className="font-tech text-cyber-blue">{feature.professional}</span>
-                          )}
-                        </td>
-                        <td className="py-3 px-6 text-center">
-                          {typeof feature.enterprise === 'boolean' ? (
-                            feature.enterprise ? (
-                              <Check className="h-5 w-5 text-cyber-green mx-auto" />
-                            ) : (
-                              <span className="text-gray-500">—</span>
-                            )
-                          ) : (
-                            <span className="font-tech text-gray-300">{feature.enterprise}</span>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                ))}
+                  ))
+                ])}
               </tbody>
             </table>
           </div>

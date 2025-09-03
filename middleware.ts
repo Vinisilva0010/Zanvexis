@@ -12,6 +12,9 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/contato(.*)",
+  "/api/create-checkout",
+  "/api/webhook(.*)",
+  "/api/test-env",
 ]);
 
 // Rotas protegidas (explicitamente exigem autenticação)
