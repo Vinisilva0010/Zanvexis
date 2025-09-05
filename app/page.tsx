@@ -249,8 +249,19 @@ export default function Home() {
               <div className="relative bg-dark-surface border border-cyber-blue/30 rounded-2xl p-8 space-y-6">
                 {/* Video placeholder - ready for real video integration */}
                 <div className="aspect-video bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 rounded-xl flex items-center justify-center group cursor-pointer">
-                  <div className="p-6 bg-cyber-blue/20 rounded-full group-hover:bg-cyber-blue/40 transition-colors">
-                    <Play className="h-12 w-12 text-cyber-blue" />
+
+                
+                  <img 
+                    src="/image/imageAut.png" // <- SUBSTITUA pelo caminho da sua imagem
+                    alt="Demo da Zanvexis - Automações em Ação"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                  
+                  {/* Overlay com botão de play (aparece quando hover) */}
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="p-6 bg-cyber-blue/30 backdrop-blur-sm rounded-full group-hover:bg-cyber-blue/50 transition-all duration-300 border border-cyber-blue/50">
+                      <Play className="h-12 w-12 text-white drop-shadow-lg" />
+                    </div>
                   </div>
                 </div>
                 
@@ -267,7 +278,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+          
       {/* Benefits Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -285,11 +296,13 @@ export default function Home() {
               
               <div className="space-y-6">
                 {[
-                  "Automações 10x mais rápidas que a concorrência",
-                  "IA que aprende e evolui com seu negócio",
-                  "Integração com 500+ ferramentas populares",
-                  "ROI médio de 400% nos primeiros 6 meses",
-                  "Suporte white-glove para clientes premium"
+                  
+                  "Até 80% OFF em eletrônicos das principais lojas",
+                  "Monitoramento 24/7 dos melhores deals do mercado",
+                  "Histórico de preços para você comprar no momento certo",
+                  "Cupons exclusivos não disponíveis em outros lugares",
+                  "Sistema inteligente de recomendação personalizada"
+                
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}
@@ -305,7 +318,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <Link href="https://loja-zanvexis.vercel.app/" className="cyber-button inline-flex items-center space-x-3 text-lg px-8 py-4">
+              <Link href="https://zanvexis-store.vercel.app/produtos" className="cyber-button inline-flex items-center space-x-3 text-lg px-8 py-4">
                 <span>Ver Produtos da Loja</span>
                 <TrendingUp className="h-5 w-5" />
               </Link>
@@ -321,8 +334,18 @@ export default function Home() {
               <div className="relative bg-dark-surface border border-cyber-blue/30 rounded-2xl p-8 space-y-6">
                 {/* Video placeholder - ready for real video integration */}
                 <div className="aspect-video bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 rounded-xl flex items-center justify-center group cursor-pointer">
-                  <div className="p-6 bg-cyber-blue/20 rounded-full group-hover:bg-cyber-blue/40 transition-colors">
-                    <Play className="h-12 w-12 text-cyber-blue" />
+
+                  <img 
+                    src="/image/imageLoja.png" // <- SUBSTITUA pelo caminho da sua imagem
+                    alt="Demo da Zanvexis - Automações em Ação"
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                  
+                  {/* Overlay com botão de play (aparece quando hover) */}
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="p-6 bg-cyber-blue/30 backdrop-blur-sm rounded-full group-hover:bg-cyber-blue/50 transition-all duration-300 border border-cyber-blue/50">
+                      <Play className="h-12 w-12 text-white drop-shadow-lg" />
+                    </div>
                   </div>
                 </div>
                 
@@ -339,6 +362,88 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+         {/* Benefits Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-4xl lg:text-5xl font-cyber font-bold text-white">
+                Tecnologia
+                do Futuro <span className="text-cyber-purple">ZVX Token</span>
+
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  "Pagamentos instantâneos com desconto de até 50% em automações",
+                  "Staking com até 15% APY para holders do ZVX",
+                  "Governança DAO: seu voto, sua voz no ecossistema",
+                  "Receba cashback e rewards automáticos em ZVX",
+                  "Transparência total e proteção com smart contracts auditados"
+
+                ].map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center space-x-4"
+                  >
+                    <CheckCircle className="h-6 w-6 text-cyber-green flex-shrink-0" />
+                    <span className="text-lg text-gray-300 font-tech">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <Link href="https://token-zvx.vercel.app/" className="cyber-button inline-flex items-center space-x-3 text-lg px-8 py-4">
+                <span>Pagina do Token ZVX</span>
+                <TrendingUp className="h-5 w-5" />
+              </Link>
+            </motion.div>
+
+            {/* Video Demo Placeholder */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="relative bg-dark-surface border border-cyber-blue/30 rounded-2xl p-8 space-y-6">
+                {/* Video placeholder - ready for real video integration */}
+                <div className="aspect-video bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 rounded-xl flex items-center justify-center group cursor-pointer">
+                 <img 
+                  src="/image/TokenZvx.png" // <- SUBSTITUA pelo caminho da sua imagem
+                  alt="Demo da Zanvexis - Automações em Ação"
+                  className="w-full h-full object-cover rounded-xl"
+      />
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="p-6 bg-cyber-blue/30 backdrop-blur-sm rounded-full group-hover:bg-cyber-blue/50 transition-all duration-300 border border-cyber-blue/50">
+                    <Play className="h-12 w-12 text-white drop-shadow-lg" />
+                  </div>
+                </div>
+                </div>
+                
+                <div className="text-center space-y-3">
+                  <h3 className="text-2xl font-tech font-bold text-white">
+                    Veja como funcionara nossa moeda
+                  </h3>
+                  <p className="text-gray-400">
+                    Demonstração completa em alguns  minutos mostrando o poder das nosso Token.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Testimonials Section */}
       <section className="py-20 bg-dark-surface/50">

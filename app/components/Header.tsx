@@ -30,7 +30,7 @@ const Header = () => {
     { href: '/personalizadas', label: 'Personalizadas' },
     { href: '/token', label: 'ZVX Token' },
     { href: '/contato', label: 'Contato' },
-    { href: 'https://loja-zanvexis.vercel.app/', label: 'Loja' },
+    { href: 'https://zanvexis-store.vercel.app/', label: 'Loja' },
   ]
 
   const authItems = isSignedIn 
